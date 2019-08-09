@@ -1,0 +1,19 @@
+{
+  "name": "bottomlesspit",
+  "version": "1.0.0",
+  "description": "A bottomless pit in which to store things...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichardGarza/BottomlessPit.git"
+  },
+  "author": "Richard Garza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RichardGarza/BottomlessPit/issues"
+  },
+  "homepage": "https://github.com/RichardGarza/BottomlessPit#readme"
+}
