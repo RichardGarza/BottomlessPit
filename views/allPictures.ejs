@@ -6,6 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>Bottomless Pit</title>
+  <style>
+    img {
+      width: 100%
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -18,13 +23,11 @@
         <div class="col-md-6 m-auto">
           <% if(files) { %>
             <% files.forEach((file) => {  %>
-              <div class="card card-body mb-4">
-                  <% if(file.isImage) { %>
-                    <img src="pictures/<%= file.filename %>"
-                  <% } else { %>
-                    <p> This file is not a picture...</p>
-                  <% } %>
-              </div>
+              <% if(file.isImage) { %>
+                <div class="card card-body mb-4">
+                  <img src="pictures/<%= file.filename %>">
+                </div>
+              <% } %>
             <% }) %>
             
           <% } else { %>

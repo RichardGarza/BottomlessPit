@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 
 // App Instantiation
 const app = express();
@@ -24,7 +24,7 @@ const mongoURI = 'mongodb+srv://rgactr:EwzsszElAulCxt63@bottomlesspit-1quus.mong
 // Connect to Mongo
 const connection = mongoose.createConnection(mongoURI);
 
-// Init gfs
+// Init gfs (file system)
 let gfs;
 
 // Init stream
@@ -33,7 +33,7 @@ connection.once('open', () => {
    gfs.collection('uploads');
 })
 
-// Create storage engine
+// Init storage engine
 const storage = new GridFsStorage({
   url: mongoURI,
   file: (req, file) => {
@@ -53,6 +53,7 @@ const storage = new GridFsStorage({
   }
 });
 
+// Init Multer to set Req.file from form submission
 const upload = multer({ storage });
 
 // Paths
@@ -63,7 +64,6 @@ app.get('/' , ( req, res ) => {
     } 
     return res.render('index', {files: true})
   })
-  res.render('index');
 });
 
 app.get('/pictures' , ( req, res ) => {
@@ -107,9 +107,11 @@ app.get('/upload' , ( req, res ) => {
   res.render('upload');
 });
 
+
+
 app.post('/upload', upload.single('file'), ( req, res ) => {
   // res.json({ file: req.file})
-  res.redirect('/');
+  res.redirect('/pictures');
 })
 
 // Server
