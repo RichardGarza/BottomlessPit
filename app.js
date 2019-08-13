@@ -115,7 +115,7 @@ app.post('/upload', upload.single('file'), ( req, res ) => {
 })
 
 app.delete('/pictures/:_id' , (req, res) => {
-  
+
   gfs.remove({ _id: req.params._id, root: 'uploads'}, (err, gridStore) => {
     if(err){
       console.log('Error: ', err);
@@ -127,7 +127,7 @@ app.delete('/pictures/:_id' , (req, res) => {
 
 // Server
 
-const PORT = 5000;
+const PORT = process.env.PORT ||  5000;
 
 app.listen(PORT, () => {
   console.log(`App is listening on port: ${PORT}`)
