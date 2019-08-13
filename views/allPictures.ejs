@@ -26,14 +26,17 @@
               <% if(file.isImage) { %>
                 <div class="card card-body mb-4">
                   <img src="pictures/<%= file.filename %>">
+                  <form method="POST" action="/pictures/<%= file._id %>?_method=DELETE">
+                    <button class="btn btn-danger btn-block mt-4">Remove Picture</button>
+                  </form>
                 </div>
               <% } %>
             <% }) %>
-            
           <% } else { %>
             <p> No Pictures to show! </p>
           <% } %>
-        </div>
+        </div>  
+      </div>
     </div>
   </div>
   

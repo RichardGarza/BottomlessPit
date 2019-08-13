@@ -22,7 +22,7 @@ app.use( express.static( "public" ) );
 const mongoURI = 'mongodb+srv://rgactr:EwzsszElAulCxt63@bottomlesspit-1quus.mongodb.net/test?retryWrites=true&w=majority';
 
 // Connect to Mongo
-const connection = mongoose.createConnection(mongoURI);
+const connection = mongoose.createConnection(mongoURI, { useNewUrlParser: true } );
 
 // Init gfs (file system)
 let gfs;
@@ -113,6 +113,17 @@ app.post('/upload', upload.single('file'), ( req, res ) => {
   // res.json({ file: req.file})
   res.redirect('/pictures');
 })
+
+app.delete('/pictures/:_id' , (req, res) => {
+  
+  gfs.remove({ _id: req.params._id, root: 'uploads'}, (err, gridStore) => {
+    if(err){
+      console.log('Error: ', err);
+      return res.status(404).json({ err});
+    } 
+    res.redirect('/pictures');
+  });
+});
 
 // Server
 
