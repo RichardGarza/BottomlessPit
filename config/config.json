@@ -16,11 +16,12 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "postgres",
+    "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "operatorsAliases": false
+    "logging": true,
+    "use_env_variable": "DATABASE_URL"
   }
 }
