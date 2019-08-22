@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,40 +13,41 @@
     <title>Bottomless Pit</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 m-auto">
-          <a class="text-center display-4 my-4 nav-link" href="/"
-            >Bottomless Pit</a
+    <main class="container">
+      <h1>Sign in</h1>
+
+      <form action="/sign-in" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+          <small class="text-muted" id="emailHelp"
+            >email address must be a valid address</small
           >
-          <p class="text-center">Add the best picture you can find!</p>
-
-          <form action="/upload" method="POST" enctype="multipart/form-data">
-            <div class="custom-file mb-3">
-              <input
-                type="file"
-                name="file"
-                id="file"
-                class="custom-file-input"
-              />
-              <label for="file" class="custom-file-label"
-                >Choose Wisely...</label
-              >
-            </div>
-            <input
-              type="submit"
-              value="Submit"
-              class="btn btn-primary btn-block"
-            />
-          </form>
-          <p class="text-center">
-            Files must be .jpg or .png format, otherwise they will not be
-            displayed.
-          </p>
         </div>
-      </div>
-    </div>
 
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            aria-describedby="passwordHelp"
+            placeholder="Enter password"
+          />
+          <small class="text-muted" id="passwordHelp"
+            >password must match confirmation below</small
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+    </main>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

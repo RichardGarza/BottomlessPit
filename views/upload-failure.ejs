@@ -19,30 +19,11 @@
           <a class="text-center display-4 my-4 nav-link" href="/"
             >Bottomless Pit</a
           >
-          <p class="text-center">Add the best picture you can find!</p>
-
-          <form action="/upload" method="POST" enctype="multipart/form-data">
-            <div class="custom-file mb-3">
-              <input
-                type="file"
-                name="file"
-                id="file"
-                class="custom-file-input"
-              />
-              <label for="file" class="custom-file-label"
-                >Choose Wisely...</label
-              >
-            </div>
-            <input
-              type="submit"
-              value="Submit"
-              class="btn btn-primary btn-block"
-            />
-          </form>
-          <p class="text-center">
-            Files must be .jpg or .png format, otherwise they will not be
-            displayed.
-          </p>
+          <h1 class="text-center">Unacceptable File Format! Try Again.</h1>
+          <br />
+          <a class="btn btn-primary btn-block" href="/upload" type="GET"
+            >Upload A Picture</a
+          >
         </div>
       </div>
     </div>
