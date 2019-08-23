@@ -45,15 +45,16 @@ module.exports = {
             let fileInfo;
 
             if (req.user) {
+              console.log("USER SIGNED IN", req.user.email);
               fileInfo = {
                 filename: filename,
-                ownerId: req.user.id,
+                ownerId: `${req.user.email}`,
                 bucketName: "uploads"
               };
             } else {
               fileInfo = {
                 filename: filename,
-                ownerId: 0,
+                ownerId: "Unknown",
                 bucketName: "uploads"
               };
             }
@@ -161,7 +162,9 @@ module.exports = {
     });
 
     router.get("/pictures", (req, res) => {
+      console.log("YES");
       gfs.files.find().toArray((err, files) => {
+        console.log("FILES", files);
         if (!files || files.length === 0) {
           return res.render("index", { files: false });
         } else {
@@ -178,6 +181,7 @@ module.exports = {
             reverseFiles.unshift(file);
           });
           files = reverseFiles;
+          console.log("FILEs", files);
           res.render("allPictures", { files: files });
         }
       });

@@ -22,10 +22,12 @@
     <div class="row">
         <div class="col-md-6 m-auto">
           <% if(files) { %>
-            <% files.forEach((file) => {  %>
+            <% files.forEach((file) => { console.log(file); %>
               <% if(file.isImage) { %>
                 <div class="card card-body mb-4">
+                  <a href="/pictures/<%= file.filename %>">
                   <img src="pictures/<%= file.filename %>">
+                </a>
                   <form method="POST" action="/pictures/<%= file._id %>?_method=DELETE">
                     <button class="btn btn-danger btn-block mt-4">Remove Picture</button>
                   </form>
