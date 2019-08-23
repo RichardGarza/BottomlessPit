@@ -2,7 +2,7 @@ module.exports = {
   init(app) {
     const express = require("express");
     const router = express.Router();
-    const User = require("../db/models").User;
+    const User = require("../models").User;
     const bcrypt = require("bcryptjs");
     const passport = require("passport");
     const path = require("path");
