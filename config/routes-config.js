@@ -180,6 +180,36 @@ module.exports = {
       });
     });
 
+    router.get("/users/:userEmail", (req, res) => {
+      console.log("YES");
+      gfs.files.find().toArray((err, files) => {
+        if (!files || files.length === 0) {
+          return res.render("index", { files: false });
+        } else {
+          let reverseFiles = [];
+          files.map(file => {
+            if (
+              file.contentType === "image/jpeg" ||
+              file.contentType === "image/png"
+            ) {
+              file.isImage = true;
+            } else {
+              file.isImage = false;
+            }
+            if (
+              file.metadata &&
+              file.metadata.ownerEmail === req.params.userEmail
+            ) {
+              reverseFiles.unshift(file);
+            }
+          });
+          files = reverseFiles;
+          let owner = req.params.userEmail;
+          res.render("usersPictures", { files: files, owner: owner });
+        }
+      });
+    });
+
     router.get("/pictures/:filename", (req, res) => {
       gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
         if (!file || file.length === 0) {

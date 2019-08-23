@@ -23,25 +23,16 @@
     <div class="row">
         <div class="col-md-6 m-auto">
           
-          <% if(currentUser) { console.log("CURRENTUSER", currentUser)  %>
-            <p>YUES</p>
-          <% } else { %>
-            <p>NO</p>
-          <% } %>
+         <h2>Photos posted by <%= owner %></h2>
 
 
           <% if(files) { %>
-            <% files.forEach((file) => { console.log(file); %>
+            <% files.forEach((file) => { %>
               <% if(file.isImage) { %>
-              <% if(file.metadata) { %>
-                
-                <p>Posted by: <a href="/users/<%=file.metadata.ownerEmail%>"> <%= file.metadata.ownerEmail %> </a></p>
-              <% } else { %>
-                <p>Posted by: Unknown</p>
-              <% } %>
+
                 <div class="card card-body mb-4">
                   <a href="/pictures/<%= file.filename %>">
-                  <img src="pictures/<%= file.filename %>">
+                  <img src="/pictures/<%= file.filename %>">
                 </a>
                 <% if(currentUser && file.metadata && (currentUser.email === file.metadata.ownerEmail)) { %>
                   <form method="POST" action="/pictures/<%= file._id %>?_method=DELETE">
