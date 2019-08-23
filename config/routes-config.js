@@ -44,20 +44,14 @@ module.exports = {
 
             let fileInfo;
 
-            if (req.user) {
-              console.log("USER SIGNED IN", req.user.email);
-              fileInfo = {
-                filename: filename,
-                ownerId: `${req.user.email}`,
-                bucketName: "uploads"
-              };
-            } else {
-              fileInfo = {
-                filename: filename,
-                ownerId: "Unknown",
-                bucketName: "uploads"
-              };
-            }
+            fileInfo = {
+              filename: filename,
+              metadata: {
+                ownerEmail: `${req.user.email}`
+              },
+              bucketName: "uploads"
+            };
+
             resolve(fileInfo);
           });
         });
@@ -164,7 +158,7 @@ module.exports = {
     router.get("/pictures", (req, res) => {
       console.log("YES");
       gfs.files.find().toArray((err, files) => {
-        console.log("FILES", files);
+        console.log("FILES", files[files.length - 1].metadata.ownerEmail);
         if (!files || files.length === 0) {
           return res.render("index", { files: false });
         } else {
@@ -181,7 +175,6 @@ module.exports = {
             reverseFiles.unshift(file);
           });
           files = reverseFiles;
-          console.log("FILEs", files);
           res.render("allPictures", { files: files });
         }
       });
@@ -226,7 +219,6 @@ module.exports = {
       } else {
         res.redirect("/upload-failure");
       }
-      console.log(req.file.contentType);
     });
 
     router.delete("/pictures/:_id", (req, res) => {
