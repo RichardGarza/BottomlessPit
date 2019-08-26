@@ -1,19 +1,18 @@
 <div class="container">
   <div class="row">
     <% if(!currentUser) { %>
-    <div class="col-md-4 m-auto px-md-5 ">
+    <div class="col-md-4 m-auto">
       <a class="btn btn-primary btn-block" href="/sign-in" type="GET"
         >Sign In</a
       >
     </div>
-    <br />
-    <div class="col-md-4 m-auto px-md-5">
+    <div class="col-md-4 m-auto">
       <a class="btn btn-primary btn-block" href="/sign-up" type="GET"
         >Sign Up</a
       >
     </div>
     <% } else { %>
-    <div class="col-md-4 m-auto ">
+    <div class="col-md-4 m-auto">
       <a class="btn btn-primary btn-block" href="/sign-out" type="GET"
         >Sign Out</a
       >
