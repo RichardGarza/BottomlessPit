@@ -43,14 +43,23 @@ module.exports = {
               buf.toString("hex") + path.extname(file.originalname);
 
             let fileInfo;
-
-            fileInfo = {
-              filename: filename,
-              metadata: {
-                ownerEmail: `${req.user.email}`
-              },
-              bucketName: "uploads"
-            };
+            if (req.user) {
+              fileInfo = {
+                filename: filename,
+                metadata: {
+                  ownerEmail: `${req.user.email}`
+                },
+                bucketName: "uploads"
+              };
+            } else {
+              fileInfo = {
+                filename: filename,
+                metadata: {
+                  ownerEmail: "Anonymous"
+                },
+                bucketName: "uploads"
+              };
+            }
 
             resolve(fileInfo);
           });
